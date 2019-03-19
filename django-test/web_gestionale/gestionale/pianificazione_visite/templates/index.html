@@ -1,0 +1,16 @@
+{% extends "base_generic.html" %}
+<!-- Add additional CSS in static file --> 
+{% load static %} 
+<link rel="stylesheet" href="{% static 'css/styles.css' %}">
+{% block content %}
+  <h1>Gestionale interno htc</h1>
+  <p>Benvenuto nel nostro gestionale interno, questo sito è stato sviluppato completamente in Python e <em>Django</em>!</p>
+  <h2>Contenuto Dinamico</h2>
+  <p>Nel database sono presenti i seguenti record:</p>
+  <ul>
+    <li><strong>Dottori:</strong> {{ num_Doctor }}</li>
+    <li><strong>Società:</strong> {{ num_societa }}</li>
+    <li><strong>Visite:</strong> {{ num_Visita }}</li>
+    <li><a href="">Visite non assegnate:</a> {{ num_visita_non_assegnate }}</li>
+  </ul>
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <h1>Lista dei medici</h1>
+  <hr>
+  {% if doctor_list %}
+  <ul>
+    {% for doctor in doctor_list %}
+    <li>
+        {% if doctor.Sesso == 'm' %}
+        <img src="../../static/dottore_maschio_icona.png" alt="icona dottore" style="width:80px;height:80px;">
+        {% else %}
+        <img src="../../static/female_doctor_icon.jpg" alt="icona dottoressa" style="width:80px;height:80px;">
+        {% endif %}
+       <p><a href=""> <u><b>{{ doctor.Last_Name }} {{ doctor.Name }}</b></u></a></p>
+       <p><b>Email:</b> <a href="mailto:{{doctor.Email}}">{{ doctor.Email }}</a></p>
+       <p><b>Telefono:</b> <a href="tel:doctor.Numero_Telefonico"> {{ doctor.Numero_Telefonico }}</a></p>
+      </li>
+      <hr>
+    {% endfor %}
+  </ul>
+  {% else %}
+    <p>Non sono presenti Medici secondo i filtri specificati nel database.</p>
+  {% endif %}       
+{% endblock %}
