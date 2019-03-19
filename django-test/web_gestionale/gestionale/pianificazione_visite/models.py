@@ -332,8 +332,8 @@ class societa(models.Model):
 			raise ValidationError('Il campo indirizzo è obbligatorio!')
 		indirizzo_capitalized=''
 
-	def __str__(self):
-		return f'{self.Name}'
+	#def __str__(self):
+	#	return f'{self.Name}'
 	def get_absolute_url(self):
 		"""Returns the url to access a particular instance of the model."""
 		return reverse('model-detail-view', args=[str(self.id)])
@@ -367,8 +367,8 @@ class contatto(models.Model):
 		self.nome = newName
 		self.cognome = newLastName
 		super(contatto, self).save()
-	def __str__(self):
-			return f'{self.nome} {self.cognome}'
+	#def __str__(self):
+	#		return f'{self.nome} {self.cognome}'
 
 
 
@@ -390,8 +390,8 @@ class stazione(models.Model):
 		ordering = ['Nome']
 		verbose_name='Stazione'
 		verbose_name_plural = 'Stazioni'
-	def __str__(self):
-		return f'{self.Nome}'
+	#def __str__(self):
+	#	return f'{self.Nome}'
 	def get_absolute_url(self):
 		"""Returns the url to access a particular instance of the model."""
 		return reverse('model-detail-view', args=[str(self.id)])
@@ -443,8 +443,8 @@ class Visita(models.Model):
 				if self.ora_di_inizio>=visita.ora_di_inizio and self.ora_di_inizio<=visita.ora_di_fine or self.ora_di_fine<=visita.ora_di_fine and self.ora_di_inizio<=visita.ora_di_inizio or self.ora_di_inizio<=visita.ora_di_inizio and self.ora_di_fine>=visita.ora_di_fine:
 						if self.id != visita.id:
 							raise ValidationError('Questa stazione è già in uso in questi orari!')
-	def __str__(self):
-		return f'({self.data}) ({self.ora_di_inizio}) ({self.doctor})'
+	#def __str__(self):
+	#	return f'({self.data}) ({self.ora_di_inizio}) ({self.doctor})'
 	def get_absolute_url(self):
 		"""Returns the url to access a particular instance of the model."""
 		return reverse('model-detail-view', args=[str(self.id)])
