@@ -47,7 +47,7 @@ class DoctorAdmin(admin.ModelAdmin):
 	list_filter = ('Sesso',)
 	fieldsets =(
 		('Informazioni di sistema', {
-			'fields': ('attivo',) 
+			'fields': ('attivo',)
 			}),
 		('Anagrafica', {
 			'fields': ('Name', 'Last_Name', 'Sesso','numero_albo')
@@ -81,19 +81,19 @@ class DoctorAdmin(admin.ModelAdmin):
 	export_as_csv.short_description = "Esporta l'anagrafica dei dottori selezionati"
 
 class societaAdmin(admin.ModelAdmin):
-	list_filter = ('Città',)
+	list_filter = ('tipologia',)
 	inlines = [contattoInLine]
 	fieldsets =(
 		('Informazioni e contatti', {
 			'fields': (('Name', 'Numero_Telefonico'), ('Email',  'tipologia'),)
 			}),
 		('Informazioni geografiche', {
-			'fields': ('Città', 'Piazza_Via_Corso','indirizzo','Numero_Civico',)
+			'fields': ('Piazza_Via_Corso','indirizzo','Numero_Civico',)
 			}),
 		)
 	search_fields = ('Name',)
 	class Meta:
-		ordering = ['Name' , 'Città']
+		ordering = ['Name','tipologia']
 		list_per_page = 20
 	actions = ["export_as_csv"]
 
