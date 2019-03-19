@@ -136,8 +136,8 @@ class Doctor(models.Model):
 		ordering = ['Last_Name' , 'Name']
 		verbose_name = "Dottore"
 		verbose_name_plural = "Dottori"
-	def __str__(self):
-			return f'{self.Last_Name} {self.Name}'
+	#def __str__(self):
+	#		return f'{self.Last_Name} {self.Name}'
 	def get_absolute_url(self):
 		"""Returns the url to access a particular instance of the model."""
 		return reverse('model-detail-view', args=[str(self.id)])
