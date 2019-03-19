@@ -136,8 +136,8 @@ class Doctor(models.Model):
 		ordering = ['Last_Name' , 'Name']
 		verbose_name = "Dottore"
 		verbose_name_plural = "Dottori"
-	#def __str__(self):
-	#		return f'{self.Last_Name} {self.Name}'
+	def __str__(self):
+			return '{0} {1}'.format(self.Last_Name,self.Name)
 	def get_absolute_url(self):
 		"""Returns the url to access a particular instance of the model."""
 		return reverse('model-detail-view', args=[str(self.id)])
@@ -188,7 +188,7 @@ class societa(models.Model):
 		default='vi',
 		)
 	indirizzo= models.CharField(max_length=100, verbose_name='Nome strada o via/corso', null=True, blank=False)
-	Città= models.CharField(max_length=50, verbose_name='Città', null=True, blank=False)
+	#Citta= models.CharField(max_length=50, verbose_name='Città', null=True, blank=False)
 	Numero_Civico = models.CharField(max_length=10, verbose_name='N° Civico', null=True, blank=False)
 	attiva = models.BooleanField(default=True, help_text='La società è nostra cliente attualmente?')
 	Set_provinces= (
@@ -332,8 +332,8 @@ class societa(models.Model):
 			raise ValidationError('Il campo indirizzo è obbligatorio!')
 		indirizzo_capitalized=''
 
-	#def __str__(self):
-	#	return f'{self.Name}'
+	def __str__(self):
+		return '{0}'.format(self.Name)
 	def get_absolute_url(self):
 		"""Returns the url to access a particular instance of the model."""
 		return reverse('model-detail-view', args=[str(self.id)])
@@ -367,8 +367,8 @@ class contatto(models.Model):
 		self.nome = newName
 		self.cognome = newLastName
 		super(contatto, self).save()
-	#def __str__(self):
-	#		return f'{self.nome} {self.cognome}'
+	def __str__(self):
+			return '{0} {1}'.format(self.nome,self.cognome)
 
 
 
@@ -390,8 +390,8 @@ class stazione(models.Model):
 		ordering = ['Nome']
 		verbose_name='Stazione'
 		verbose_name_plural = 'Stazioni'
-	#def __str__(self):
-	#	return f'{self.Nome}'
+	def __str__(self):
+		return '{0}'.format(self.Nome)
 	def get_absolute_url(self):
 		"""Returns the url to access a particular instance of the model."""
 		return reverse('model-detail-view', args=[str(self.id)])
@@ -404,7 +404,7 @@ class Visita(models.Model):
 	doctor = models.ForeignKey(Doctor, on_delete=models.SET_NULL, null=True, blank=True, limit_choices_to={'attivo': True}, verbose_name='Medico assegnato')
 	societa = models.ForeignKey(societa, on_delete=models.SET_NULL, null=True, limit_choices_to={'attiva' : True},)
 	stazione = models.ForeignKey(stazione, on_delete=models.SET_NULL, null=True, limit_choices_to={'status': 'Disponibile'},)
-	STATUS_FASE =( 
+	STATUS_FASE =(
 		('Da_iniziare', 'Da Iniziare'),
 		('ECG_parziali','ECG Parzialmente inviati'),
 		('ECG_ricevuti','ECG ricevuti'),
@@ -443,8 +443,8 @@ class Visita(models.Model):
 				if self.ora_di_inizio>=visita.ora_di_inizio and self.ora_di_inizio<=visita.ora_di_fine or self.ora_di_fine<=visita.ora_di_fine and self.ora_di_inizio<=visita.ora_di_inizio or self.ora_di_inizio<=visita.ora_di_inizio and self.ora_di_fine>=visita.ora_di_fine:
 						if self.id != visita.id:
 							raise ValidationError('Questa stazione è già in uso in questi orari!')
-	#def __str__(self):
-	#	return f'({self.data}) ({self.ora_di_inizio}) ({self.doctor})'
+	def __str__(self):
+		return '{0} {1} {2}'.format(self.data, self.ora_di_inizio, self.doctor)
 	def get_absolute_url(self):
 		"""Returns the url to access a particular instance of the model."""
 		return reverse('model-detail-view', args=[str(self.id)])
